@@ -26,6 +26,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $posts;
 // });
 
+Route::group([
+    'prefix' => 'auth',
+], function(){
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
+});
+
 Route::resource('user', '\App\Http\Controllers\API\UserController');
 
 Route::resource('price', '\App\Http\Controllers\API\DrugPriceController');
