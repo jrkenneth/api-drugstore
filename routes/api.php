@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,19 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('/posts', function(){
-//     $posts = [
-//         'title' => 'Laravel API',
-//         'body' => 'Laravel Best API Course'
-//     ];
-//     return $posts;
-// });
-
 Route::group([
     'prefix' => 'auth',
 ], function(){
-    Route::post('login', '\App\Http\Controllers\AuthController@login');
-    Route::post('register', '\App\Http\Controllers\AuthController@register');
+    Route::post('login',  [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
 });
 
 Route::resource('user', '\App\Http\Controllers\API\UserController');
