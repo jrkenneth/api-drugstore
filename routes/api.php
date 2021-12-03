@@ -28,6 +28,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', '\App\Http\Controllers\AuthController@register');
 
+Route::post('/login', '\App\Http\Controllers\AuthController@login');
+
 Route::resource('user', '\App\Http\Controllers\API\UserController');
 
 Route::resource('price', '\App\Http\Controllers\API\DrugPriceController');
